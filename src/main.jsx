@@ -9,9 +9,9 @@ const container = document.getElementById("root");
 const root = ReactDOM.createRoot(container);
 root.render(
     <BrowserRouter>
-        <Theme>
+        <Theme accentColor="yellow" grayColor="olive" appearance="dark">
             <App />
-            <ThemePanel />
+            {/* <ThemePanel /> */}
         </Theme>
     </BrowserRouter>
 );

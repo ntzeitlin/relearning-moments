@@ -18,20 +18,18 @@ export const AllPosts = () => {
     const filterPosts = () => {};
 
     return (
-        <Section>
-            <Container size="4">
-                <Grid columns="3">
-                    {filteredPosts.map((postObject) => {
-                        return (
-                            <Post
-                                key={postObject.id}
-                                postInfo={postObject}
-                                detailedView={false}
-                            />
-                        );
-                    })}
-                </Grid>
-            </Container>
-        </Section>
+        <Container size="4">
+            <Grid columns="3">
+                {filteredPosts.map((postObject) => {
+                    return (
+                        <Post
+                            key={postObject.id}
+                            postInfo={postObject}
+                            detailedView={false}
+                        />
+                    );
+                })}
+            </Grid>
+        </Container>
     );
 };

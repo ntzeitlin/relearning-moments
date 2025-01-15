@@ -1,4 +1,11 @@
+import { NavBar } from "./components/nav/NavBar";
+import { AllPosts } from "./components/views/AllPosts";
 
 export const App = () => {
-  return <div>Hello World!</div>
-}
+    return (
+        <>
+            <NavBar />
+            <AllPosts />
+        </>
+    );
+};

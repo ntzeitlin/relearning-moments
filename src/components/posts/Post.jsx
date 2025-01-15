@@ -1,6 +1,7 @@
+/* eslint-disable react/prop-types */
 import { Box, Card, Heading } from "@radix-ui/themes";
 
-export const Post = ({ postInfo, detailedView = true }) => {
+export const Post = ({ postInfo, detailedView }) => {
     // function to count likes
     // function to check if currentUser is the poster, if so add edit button, if not, add like button
     // check if post has been liked already, button based on this

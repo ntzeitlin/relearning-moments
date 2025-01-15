@@ -16,7 +16,11 @@ export const AllPosts = () => {
                 <Grid columns="3">
                     {allPostsArray.map((postObject) => {
                         return (
-                            <Post key={postObject.id} postInfo={postObject} />
+                            <Post
+                                key={postObject.id}
+                                postInfo={postObject}
+                                detailedView={false}
+                            />
                         );
                     })}
                 </Grid>

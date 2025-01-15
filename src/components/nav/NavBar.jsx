@@ -1,44 +1,15 @@
-import * as NavigationMenu from "@radix-ui/react-navigation-menu";
-import "./NavBar.css";
+import { TabNav } from "@radix-ui/themes";
 export const NavBar = () => {
-    const handleClick = () => {
-        console.log("clicked");
-    };
     return (
-        <NavigationMenu.Root className="NavigationMenuRoot">
-            <NavigationMenu.Item>
-                <NavigationMenu.Link
-                    className="NavigationMenuLink"
-                    onClick={handleClick}
-                >
-                    All Posts
-                </NavigationMenu.Link>
-            </NavigationMenu.Item>
-            <NavigationMenu.Item>
-                <NavigationMenu.Link className="NavigationMenuLink">
-                    My Posts
-                </NavigationMenu.Link>
-            </NavigationMenu.Item>
-            <NavigationMenu.Item>
-                <NavigationMenu.Link className="NavigationMenuLink">
-                    Fav Posts
-                </NavigationMenu.Link>
-            </NavigationMenu.Item>
-            <NavigationMenu.Item>
-                <NavigationMenu.Link className="NavigationMenuLink">
-                    New Post
-                </NavigationMenu.Link>
-            </NavigationMenu.Item>
-            <NavigationMenu.Item>
-                <NavigationMenu.Link className="NavigationMenuLink">
-                    Profile
-                </NavigationMenu.Link>
-            </NavigationMenu.Item>
-            <NavigationMenu.Item>
-                <NavigationMenu.Link className="NavigationMenuLink">
-                    Logout
-                </NavigationMenu.Link>
-            </NavigationMenu.Item>
-        </NavigationMenu.Root>
+        <TabNav.Root justify="center">
+            <TabNav.Link href="#" active>
+                All Posts
+            </TabNav.Link>
+            <TabNav.Link href="#">My Posts</TabNav.Link>
+            <TabNav.Link href="#">Favorite Posts</TabNav.Link>
+            <TabNav.Link href="#">New Post</TabNav.Link>
+            <TabNav.Link href="#">Profile</TabNav.Link>
+            <TabNav.Link href="#">Logout</TabNav.Link>
+        </TabNav.Root>
     );
 };

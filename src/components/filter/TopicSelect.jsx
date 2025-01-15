@@ -9,9 +9,17 @@ export const TopicSelect = () => {
         getAllTopics().then((data) => setAllTopicsArray(data));
     }, []);
 
+    const handleTopicChange = (event) => {
+        console.log(parseInt(event));
+    };
+
     return (
-        <Box ml="2" mr="2">
-            <Select.Root size="2" defaultValue="0">
+        <Box m="2">
+            <Select.Root
+                onValueChange={handleTopicChange}
+                size="2"
+                defaultValue="0"
+            >
                 <Select.Trigger />
                 <Select.Content>
                     <Select.Item value="0">Choose Topic...</Select.Item>

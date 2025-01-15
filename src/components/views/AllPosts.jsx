@@ -5,16 +5,23 @@ import { getAllPosts } from "../../services/postService";
 
 export const AllPosts = () => {
     const [allPostsArray, setAllPostsArray] = useState([]);
+    const [filteredPosts, setFilteredPosts] = useState([]);
 
     useEffect(() => {
         getAllPosts().then((response) => setAllPostsArray(response));
     }, []);
 
+    useEffect(() => {
+        setFilteredPosts(allPostsArray);
+    }, [allPostsArray]);
+
+    const filterPosts = () => {};
+
     return (
         <Section>
             <Container size="4">
                 <Grid columns="3">
-                    {allPostsArray.map((postObject) => {
+                    {filteredPosts.map((postObject) => {
                         return (
                             <Post
                                 key={postObject.id}

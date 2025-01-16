@@ -16,7 +16,7 @@ export const AllPosts = ({ filteredPosts, currentUser = {} }) => {
         if (location.state?.showmyposts) {
             const postArrayCopy = [...filteredPosts];
             setPostArray(
-                postArrayCopy?.filter(
+                postArrayCopy.filter(
                     (postObject) =>
                         parseInt(postObject.userId) === parseInt(currentUser.id)
                 )
@@ -25,9 +25,14 @@ export const AllPosts = ({ filteredPosts, currentUser = {} }) => {
 
         if (location.state?.showfavorites) {
             const postArrayCopy = [...filteredPosts];
+            debugger;
             setPostArray(
-                postArrayCopy?.filter((postObject) =>
-                    checkForLikes(postObject.userLikedPosts)
+                postArrayCopy.filter(
+                    (postObject) =>
+                        postObject.userLikedPosts?.filter(
+                            (postObject) =>
+                                postObject.userId === parseInt(currentUser.id)
+                        ).length > 0
                 )
             );
         }

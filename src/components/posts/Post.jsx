@@ -1,10 +1,16 @@
 /* eslint-disable react/prop-types */
-import { Box, Card, Heading } from "@radix-ui/themes";
-import { Link, useNavigate, useParams } from "react-router-dom";
-import { getPostById } from "../../services/postService";
+import { Box, Button, Card, Container, Heading } from "@radix-ui/themes";
+import { Link, useParams } from "react-router-dom";
+import { getPostById, handleLike } from "../../services/postService";
 import { useEffect, useState } from "react";
+import { HeartFilledIcon, HeartIcon } from "@radix-ui/react-icons";
 
-export const Post = ({ postInfo = {}, detailedView }) => {
+export const Post = ({
+    postInfo = {},
+    detailedView,
+    currentUser,
+    getAndSetAllPosts,
+}) => {
     // function to count likes
     // function to check if currentUser is the poster, if so add edit button, if not, add like button
     // check if post has been liked already, button based on this
@@ -19,6 +25,39 @@ export const Post = ({ postInfo = {}, detailedView }) => {
             getPostById(postId).then((data) => setPostData(data));
         }
     }, []);
+
+    const checkIfLiked = () => {
+        const alreadyLiked =
+            postData.userLikedPosts?.filter(
+                (likedPostObject) =>
+                    parseInt(likedPostObject.userId) ===
+                    parseInt(currentUser.id)
+            ).length > 0;
+
+        if (alreadyLiked) {
+            return (
+                <Button disabled>
+                    <HeartFilledIcon />
+                    Liked
+                </Button>
+            );
+        } else {
+            return (
+                <Button
+                    onClick={() => {
+                        handleLike({
+                            userId: currentUser.id,
+                            postId: parseInt(postId),
+                        });
+                        getAndSetAllPosts();
+                    }}
+                >
+                    <HeartIcon />
+                    Like
+                </Button>
+            );
+        }
+    };
 
     return !detailedView ? (
         <Card size="2" m="3">
@@ -50,6 +89,13 @@ export const Post = ({ postInfo = {}, detailedView }) => {
             </Heading>
             <Heading size="1">Date: {postData.date}</Heading>
             <Box>{postData.body}</Box>
+            <Container mt="2">
+                {currentUser.id === postData.userId ? (
+                    <Button>Edit</Button>
+                ) : (
+                    checkIfLiked()
+                )}
+            </Container>
         </Card>
     );
 };

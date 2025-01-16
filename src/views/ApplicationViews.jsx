@@ -80,7 +80,13 @@ export const ApplicationViews = () => {
                     />
                     <Route
                         path=":postId"
-                        element={<Post detailedView={true} />}
+                        element={
+                            <Post
+                                detailedView={true}
+                                currentUser={currentUser}
+                                getAndSetAllPosts={getAndSetAllPosts}
+                            />
+                        }
                     />
                     <Route
                         path="mine"

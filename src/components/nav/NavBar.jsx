@@ -6,7 +6,7 @@ export const NavBar = () => {
     return (
         <TabNav.Root justify="center">
             <TabNav.Link asChild active={location.pathname === "/"}>
-                <Link href="/">All Posts</Link>
+                <Link to="/">All Posts</Link>
             </TabNav.Link>
             <TabNav.Link asChild active={location.pathname === ""}>
                 <Link href="/">My Posts</Link>

@@ -1,20 +1,22 @@
-import { Route, Routes } from "react-router-dom";
+import { Outlet, Route, Routes } from "react-router-dom";
 import { AllPosts } from "../components/views/AllPosts";
 import { NavBar } from "../components/Nav/NavBar";
-import { Flex, Section } from "@radix-ui/themes";
-import { SearchBox } from "../components/filter/SearchBox";
-import { TopicSelect } from "../components/filter/TopicSelect";
 import { useEffect, useState } from "react";
 import { getAllPosts } from "../services/postService";
 import { FilterBar } from "../components/filter/FilterBar";
+import { Post } from "../components/posts/Post";
 
 export const ApplicationViews = () => {
     const [topicId, setTopicId] = useState("");
     const [searchTerm, setSearchTerm] = useState("");
     const [allPostsArray, setAllPostsArray] = useState([]);
     const [filteredPosts, setFilteredPosts] = useState([]);
+    const [currentUser, setCurrentUser] = useState({});
 
     useEffect(() => {
+        const localLearningUser = localStorage.getItem("learning_user");
+        const learningUserObject = JSON.parse(localLearningUser);
+        setCurrentUser(learningUserObject);
         getAndSetAllPosts();
     }, []);
 
@@ -63,11 +65,24 @@ export const ApplicationViews = () => {
                             setTopicId={setTopicId}
                             getAndSetAllPosts={getAndSetAllPosts}
                         />
-                        <AllPosts filteredPosts={filteredPosts} />
+                        <Outlet />
                     </>
                 }
             >
-                <Route index element={<AllPosts />} />
+                <Route
+                    index
+                    element={<AllPosts filteredPosts={filteredPosts} />}
+                />
+                <Route path="post">
+                    <Route
+                        index
+                        element={<AllPosts filteredPosts={filteredPosts} />}
+                    />
+                    <Route
+                        path=":postId"
+                        element={<Post detailedView={true} />}
+                    />
+                </Route>
             </Route>
         </Routes>
     );

@@ -1,20 +1,21 @@
 /* eslint-disable react/prop-types */
 import { HeartFilledIcon, HeartIcon } from "@radix-ui/react-icons";
 import { Box, Button, Card, Container, Heading } from "@radix-ui/themes";
-import { handleLike } from "../../services/postService";
+import { getPostById, handleLike } from "../../services/postService";
 import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
 
-export const DetailedPost = ({
-    postData,
-    getAndSetAllPosts,
-    currentUser,
-    postId,
-}) => {
+export const DetailedPost = ({ getAndSetAllPosts, currentUser, postId }) => {
     const navigate = useNavigate();
+    const [localPostData, setLocalPostData] = useState({});
+
+    useEffect(() => {
+        getPostById(postId).then((data) => setLocalPostData(data));
+    }, []);
 
     const checkIfLiked = () => {
         const alreadyLiked =
-            postData.userLikedPosts?.filter(
+            localPostData.userLikedPosts?.filter(
                 (likedPostObject) =>
                     parseInt(likedPostObject.userId) ===
                     parseInt(currentUser.id)
@@ -50,21 +51,21 @@ export const DetailedPost = ({
 
     return (
         <Card size="2" m="3">
-            <Heading size="4">{postData.title}</Heading>
-            <Heading size="3">Author: {postData.user?.name}</Heading>
+            <Heading size="4">{localPostData?.title}</Heading>
+            <Heading size="3">Author: {localPostData.user?.name}</Heading>
             <Heading size="3" weight="medium">
-                Topic: {postData.topic?.name}
+                Topic: {localPostData.topic?.name}
             </Heading>
             <Heading size="2" weight="medium">
                 Likes:{" "}
-                {postData.userLikedPosts?.length
-                    ? postData.userLikedPosts?.length
+                {localPostData.userLikedPosts?.length
+                    ? localPostData.userLikedPosts?.length
                     : "0"}
             </Heading>
-            <Heading size="1">Date: {postData.date}</Heading>
-            <Box>{postData.body}</Box>
+            <Heading size="1">Date: {localPostData.date}</Heading>
+            <Box>{localPostData.body}</Box>
             <Container mt="2">
-                {currentUser.id === postData.userId ? (
+                {currentUser.id === localPostData.userId ? (
                     <Button>Edit</Button>
                 ) : (
                     checkIfLiked()

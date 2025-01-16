@@ -5,63 +5,27 @@ import { AllPosts } from "./components/views/AllPosts";
 import { SearchBox } from "./components/filter/SearchBox";
 import { useState, useEffect } from "react";
 import { getAllPosts } from "./services/postService";
+import { Route, Routes } from "react-router-dom";
+import { Authorized } from "./views/Authorized";
+import { ApplicationViews } from "./views/ApplicationViews";
+import { Register } from "./components/auth/Register";
+import { Login } from "./components/auth/Login";
 
 export const App = () => {
-    const [topicId, setTopicId] = useState("");
-    const [searchTerm, setSearchTerm] = useState("");
-    const [allPostsArray, setAllPostsArray] = useState([]);
-    const [filteredPosts, setFilteredPosts] = useState([]);
-
-    useEffect(() => {
-        getAndSetAllPosts();
-    }, []);
-
-    useEffect(() => {
-        setFilteredPosts(allPostsArray);
-    }, [allPostsArray]);
-
-    useEffect(() => {
-        filterPosts(searchTerm, topicId);
-    }, [searchTerm, topicId]);
-
-    const getAndSetAllPosts = () => {
-        getAllPosts().then((response) => setAllPostsArray(response));
-    };
-
-    const filterPosts = (searchTerm = "", topicId = "") => {
-        let filteringPosts = [];
-
-        if (topicId) {
-            filteringPosts = allPostsArray.filter(
-                (postObject) => postObject.topicId == topicId
-            );
-            setFilteredPosts(filteringPosts);
-        } else if (topicId === 0) {
-            setFilteredPosts(allPostsArray);
-        }
-        if (searchTerm) {
-            filteringPosts = allPostsArray.filter((postObject) =>
-                postObject.title
-                    .toLowerCase()
-                    .includes(searchTerm.toLowerCase())
-            );
-            setFilteredPosts(filteringPosts);
-        }
-    };
-
     return (
         <>
-            <NavBar />
-            <Section>
-                <Flex justify="center" align="center">
-                    <SearchBox setSearchTerm={setSearchTerm} />
-                    <TopicSelect
-                        setTopicId={setTopicId}
-                        getAndSetAllPosts={getAndSetAllPosts}
-                    />
-                </Flex>
-            </Section>
-            <AllPosts filteredPosts={filteredPosts} />
+            <Routes>
+                <Route path="/login" element={<Login />} />
+                <Route path="/register" element={<Register />} />
+                <Route
+                    path="*"
+                    element={
+                        <Authorized>
+                            <ApplicationViews />
+                        </Authorized>
+                    }
+                />
+            </Routes>
         </>
     );
 };

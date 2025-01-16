@@ -1,7 +1,8 @@
 import { TabNav } from "@radix-ui/themes";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 export const NavBar = () => {
     const location = useLocation();
+    const navigate = useNavigate();
     return (
         <TabNav.Root justify="center">
             <TabNav.Link asChild active={location.pathname === "/"}>
@@ -20,7 +21,19 @@ export const NavBar = () => {
                 <Link href="/">Profile</Link>
             </TabNav.Link>
             <TabNav.Link asChild active={location.pathname === ""}>
-                <Link href="/">Logout</Link>
+                {localStorage.getItem("learning_user") ? (
+                    <Link
+                        to=""
+                        onClick={() => {
+                            localStorage.removeItem("learning_user");
+                            navigate("/login", { replace: true });
+                        }}
+                    >
+                        Logout
+                    </Link>
+                ) : (
+                    ""
+                )}
             </TabNav.Link>
         </TabNav.Root>
     );

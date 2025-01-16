@@ -8,6 +8,7 @@ export const AllPosts = ({
     filteredPosts,
     currentUser = {},
     getAndSetAllPosts,
+    viewName,
 }) => {
     const [postArray, setPostArray] = useState([]);
     const location = useLocation();
@@ -46,18 +47,17 @@ export const AllPosts = ({
             <Grid columns="3">
                 {postArray?.map((postObject) => {
                     return (
-                        <>
-                            <Post
-                                key={`post-key-${postObject.id}`}
-                                postInfo={postObject}
-                                detailedView={false}
-                                currentUser={currentUser}
-                                getAndSetAllPosts={getAndSetAllPosts}
-                                showDislike={
-                                    location.state?.showfavorites ? true : false
-                                }
-                            />
-                        </>
+                        <Post
+                            key={`${viewName}--${postObject.id}`}
+                            postInfo={postObject}
+                            detailedView={false}
+                            currentUser={currentUser}
+                            getAndSetAllPosts={getAndSetAllPosts}
+                            showDislike={
+                                location.state?.showfavorites ? true : false
+                            }
+                            viewName={viewName}
+                        />
                     );
                 })}
             </Grid>

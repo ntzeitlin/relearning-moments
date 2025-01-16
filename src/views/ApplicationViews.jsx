@@ -71,12 +71,22 @@ export const ApplicationViews = () => {
             >
                 <Route
                     index
-                    element={<AllPosts filteredPosts={filteredPosts} />}
+                    element={
+                        <AllPosts
+                            filteredPosts={filteredPosts}
+                            viewName={"view--index--"}
+                        />
+                    }
                 />
                 <Route path="post">
                     <Route
                         index
-                        element={<AllPosts filteredPosts={filteredPosts} />}
+                        element={
+                            <AllPosts
+                                filteredPosts={filteredPosts}
+                                viewName={"view--post--"}
+                            />
+                        }
                     />
                     <Route
                         path=":postId"
@@ -94,6 +104,7 @@ export const ApplicationViews = () => {
                             <AllPosts
                                 filteredPosts={filteredPosts}
                                 currentUser={currentUser}
+                                viewName={"view--mine--"}
                             />
                         }
                     />
@@ -104,6 +115,7 @@ export const ApplicationViews = () => {
                                 filteredPosts={filteredPosts}
                                 currentUser={currentUser}
                                 getAndSetAllPosts={getAndSetAllPosts}
+                                viewName={"view--favorite--"}
                             />
                         }
                     />

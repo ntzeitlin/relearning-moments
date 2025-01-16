@@ -12,6 +12,7 @@ export const Post = ({
     currentUser,
     getAndSetAllPosts,
     showDislike = false,
+    viewName,
 }) => {
     const { postId } = useParams();
 
@@ -30,12 +31,14 @@ export const Post = ({
             showDislike={showDislike}
             currentUser={currentUser}
             getAndSetAllPosts={getAndSetAllPosts}
+            key={`summary-post-${viewName}-${postData.id}`}
         />
     ) : (
         <DetailedPost
             getAndSetAllPosts={getAndSetAllPosts}
             currentUser={currentUser}
             postId={postId}
+            key={`detailed-post-${viewName}-${postId}`}
         />
     );
 };

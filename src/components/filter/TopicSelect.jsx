@@ -2,7 +2,7 @@ import { Box, Select } from "@radix-ui/themes";
 import { useEffect, useState } from "react";
 import { getAllTopics } from "../../services/topicService";
 
-export const TopicSelect = () => {
+export const TopicSelect = ({ setTopicId }) => {
     const [allTopicsArray, setAllTopicsArray] = useState([]);
 
     useEffect(() => {
@@ -10,7 +10,7 @@ export const TopicSelect = () => {
     }, []);
 
     const handleTopicChange = (event) => {
-        console.log(parseInt(event));
+        setTopicId(parseInt(event));
     };
 
     return (

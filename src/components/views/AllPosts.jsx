@@ -1,22 +1,8 @@
-import { Container, Grid, Section } from "@radix-ui/themes";
+import { Container, Grid } from "@radix-ui/themes";
 import { Post } from "../posts/Post";
-import { useEffect, useState } from "react";
-import { getAllPosts } from "../../services/postService";
 
-export const AllPosts = () => {
-    const [allPostsArray, setAllPostsArray] = useState([]);
-    const [filteredPosts, setFilteredPosts] = useState([]);
-
-    useEffect(() => {
-        getAllPosts().then((response) => setAllPostsArray(response));
-    }, []);
-
-    useEffect(() => {
-        setFilteredPosts(allPostsArray);
-    }, [allPostsArray]);
-
-    const filterPosts = () => {};
-
+// eslint-disable-next-line react/prop-types
+export const AllPosts = ({ filteredPosts }) => {
     return (
         <Container size="4">
             <Grid columns="3">

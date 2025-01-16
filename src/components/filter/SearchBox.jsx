@@ -1,9 +1,10 @@
 import { MagnifyingGlassIcon } from "@radix-ui/react-icons";
 import { TextField } from "@radix-ui/themes";
 
-export const SearchBox = () => {
+// eslint-disable-next-line react/prop-types
+export const SearchBox = ({ setSearchTerm }) => {
     const handleChange = (event) => {
-        console.log(event.target.value);
+        setSearchTerm(event.target.value);
     };
 
     return (

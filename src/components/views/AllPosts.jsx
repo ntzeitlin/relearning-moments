@@ -4,7 +4,11 @@ import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 
 // eslint-disable-next-line react/prop-types
-export const AllPosts = ({ filteredPosts, currentUser = {} }) => {
+export const AllPosts = ({
+    filteredPosts,
+    currentUser = {},
+    getAndSetAllPosts,
+}) => {
     const [postArray, setPostArray] = useState([]);
     const location = useLocation();
 
@@ -25,7 +29,6 @@ export const AllPosts = ({ filteredPosts, currentUser = {} }) => {
 
         if (location.state?.showfavorites) {
             const postArrayCopy = [...filteredPosts];
-            debugger;
             setPostArray(
                 postArrayCopy.filter(
                     (postObject) =>
@@ -38,22 +41,23 @@ export const AllPosts = ({ filteredPosts, currentUser = {} }) => {
         }
     }, [filteredPosts, location.state]);
 
-    const checkForLikes = (userLikedPosts) => {
-        for (const obj of userLikedPosts) {
-            return obj.userId === parseInt(currentUser.id);
-        }
-    };
-
     return (
         <Container size="4">
             <Grid columns="3">
                 {postArray?.map((postObject) => {
                     return (
-                        <Post
-                            key={`post-key-${postObject.id}`}
-                            postInfo={postObject}
-                            detailedView={false}
-                        />
+                        <>
+                            <Post
+                                key={`post-key-${postObject.id}`}
+                                postInfo={postObject}
+                                detailedView={false}
+                                currentUser={currentUser}
+                                getAndSetAllPosts={getAndSetAllPosts}
+                                showDislike={
+                                    location.state?.showfavorites ? true : false
+                                }
+                            />
+                        </>
                     );
                 })}
             </Grid>

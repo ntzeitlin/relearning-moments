@@ -1,30 +1,45 @@
 /* eslint-disable react/prop-types */
 import { Box, Button, Card, Container, Heading } from "@radix-ui/themes";
-import { Link, useParams } from "react-router-dom";
-import { getPostById, handleLike } from "../../services/postService";
+import { Link, useNavigate, useParams } from "react-router-dom";
+import {
+    deleteLikedPostById,
+    getLikedPostByUserIdAndPostId,
+    getPostById,
+    handleLike,
+} from "../../services/postService";
 import { useEffect, useState } from "react";
-import { HeartFilledIcon, HeartIcon } from "@radix-ui/react-icons";
+import {
+    CircleBackslashIcon,
+    HeartFilledIcon,
+    HeartIcon,
+} from "@radix-ui/react-icons";
 
 export const Post = ({
     postInfo = {},
     detailedView,
     currentUser,
     getAndSetAllPosts,
+    showDislike = false,
 }) => {
     // function to count likes
     // function to check if currentUser is the poster, if so add edit button, if not, add like button
     // check if post has been liked already, button based on this
 
     const { postId } = useParams();
+    const navigate = useNavigate();
 
     const [postData, setPostData] = useState({});
 
     useEffect(() => {
         setPostData(postInfo);
         if (detailedView) {
-            getPostById(postId).then((data) => setPostData(data));
+            resetPostData();
         }
     }, []);
+
+    const resetPostData = () => {
+        getPostById(postId).then((data) => setPostData(data));
+    };
 
     const checkIfLiked = () => {
         const alreadyLiked =
@@ -50,6 +65,10 @@ export const Post = ({
                             postId: parseInt(postId),
                         });
                         getAndSetAllPosts();
+                        resetPostData();
+                        navigate("/post/favorite", {
+                            state: { showfavorites: true },
+                        });
                     }}
                 >
                     <HeartIcon />
@@ -57,6 +76,16 @@ export const Post = ({
                 </Button>
             );
         }
+    };
+
+    const handleUnlike = async () => {
+        const likedPostId = await getLikedPostByUserIdAndPostId(
+            parseInt(currentUser.id),
+            parseInt(postData.id)
+        );
+
+        deleteLikedPostById(likedPostId[0].id);
+        getAndSetAllPosts();
     };
 
     return !detailedView ? (
@@ -73,6 +102,15 @@ export const Post = ({
                     ? postInfo.userLikedPosts?.length
                     : "0"}
             </Heading>
+            {showDislike ? (
+                <Container>
+                    <Button size="1" mt="2" color="red" onClick={handleUnlike}>
+                        <CircleBackslashIcon /> Unlike
+                    </Button>
+                </Container>
+            ) : (
+                ""
+            )}
         </Card>
     ) : (
         <Card size="2" m="3">

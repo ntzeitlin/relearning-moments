@@ -103,6 +103,7 @@ export const ApplicationViews = () => {
                             <AllPosts
                                 filteredPosts={filteredPosts}
                                 currentUser={currentUser}
+                                getAndSetAllPosts={getAndSetAllPosts}
                             />
                         }
                     />

@@ -17,3 +17,15 @@ export const handleLike = async (likedPostObject) => {
     const data = await response.json()
     return data
 }
+
+export const getLikedPostByUserIdAndPostId = async (userId, postId) => {
+    const response = await fetch(`http://localhost:8088/userLikedPosts?userId=${userId}&postId=${postId}`)
+    const data = await response.json()
+    return data
+}
+
+export const deleteLikedPostById = async (likedPostId) => {
+    return await fetch(`http://localhost:8088/userLikedPosts/${likedPostId}`, {
+        method: "DELETE"
+    })
+}

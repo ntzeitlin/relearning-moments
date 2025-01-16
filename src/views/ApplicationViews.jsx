@@ -82,6 +82,24 @@ export const ApplicationViews = () => {
                         path=":postId"
                         element={<Post detailedView={true} />}
                     />
+                    <Route
+                        path="mine"
+                        element={
+                            <AllPosts
+                                filteredPosts={filteredPosts}
+                                currentUser={currentUser}
+                            />
+                        }
+                    />
+                    <Route
+                        path="favorite"
+                        element={
+                            <AllPosts
+                                filteredPosts={filteredPosts}
+                                currentUser={currentUser}
+                            />
+                        }
+                    />
                 </Route>
             </Route>
         </Routes>

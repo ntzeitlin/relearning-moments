@@ -8,11 +8,18 @@ export const NavBar = () => {
             <TabNav.Link asChild active={location.pathname === "/"}>
                 <Link to="/">All Posts</Link>
             </TabNav.Link>
-            <TabNav.Link asChild active={location.pathname === ""}>
-                <Link href="/">My Posts</Link>
+            <TabNav.Link asChild active={location.pathname === "/post/mine"}>
+                <Link to="/post/mine" state={{ showmyposts: true }}>
+                    My Posts
+                </Link>
             </TabNav.Link>
-            <TabNav.Link asChild active={location.pathname === ""}>
-                <Link href="/">Favorite Posts</Link>
+            <TabNav.Link
+                asChild
+                active={location.pathname === "/post/favorite"}
+            >
+                <Link to="/post/favorite" state={{ showfavorites: true }}>
+                    Favorite Posts
+                </Link>
             </TabNav.Link>
             <TabNav.Link asChild active={location.pathname === ""}>
                 <Link href="/">New Posts</Link>

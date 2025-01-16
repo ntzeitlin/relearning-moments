@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { getPostById } from "../../services/postService";
 import { useEffect, useState } from "react";
 
@@ -11,7 +11,7 @@ export const Post = ({
     detailedView,
     currentUser,
     getAndSetAllPosts,
-    showDislike = false,
+    showDislike,
     viewName,
 }) => {
     const { postId } = useParams();

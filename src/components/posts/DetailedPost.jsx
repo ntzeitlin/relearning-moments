@@ -1,6 +1,13 @@
 /* eslint-disable react/prop-types */
 import { HeartFilledIcon, HeartIcon } from "@radix-ui/react-icons";
-import { Box, Button, Card, Container, Heading } from "@radix-ui/themes";
+import {
+    Box,
+    Button,
+    Card,
+    Container,
+    Heading,
+    Section,
+} from "@radix-ui/themes";
 import { getPostById, handleLike } from "../../services/postService";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
@@ -64,13 +71,13 @@ export const DetailedPost = ({ getAndSetAllPosts, currentUser, postId }) => {
             </Heading>
             <Heading size="1">Date: {localPostData.date}</Heading>
             <Box>{localPostData.body}</Box>
-            <Container mt="2">
+            <Section mt="-7" mb="-8">
                 {currentUser.id === localPostData.userId ? (
                     <Button>Edit</Button>
                 ) : (
                     checkIfLiked()
                 )}
-            </Container>
+            </Section>
         </Card>
     );
 };

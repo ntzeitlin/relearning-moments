@@ -3,7 +3,12 @@ import { Flex, Section } from "@radix-ui/themes";
 import { SearchBox } from "./SearchBox";
 import { TopicSelect } from "./TopicSelect";
 
-export const FilterBar = ({ setSearchTerm, setTopicId, getAndSetAllPosts }) => {
+export const FilterBar = ({
+    topicId,
+    setSearchTerm,
+    setTopicId,
+    getAndSetAllPosts,
+}) => {
     return (
         <Section>
             <Flex justify="center" align="center">
@@ -11,6 +16,7 @@ export const FilterBar = ({ setSearchTerm, setTopicId, getAndSetAllPosts }) => {
                 <TopicSelect
                     setTopicId={setTopicId}
                     getAndSetAllPosts={getAndSetAllPosts}
+                    topicId={topicId}
                 />
             </Flex>
         </Section>

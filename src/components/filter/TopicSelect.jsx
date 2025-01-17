@@ -2,7 +2,7 @@ import { Box, Select } from "@radix-ui/themes";
 import { useEffect, useState } from "react";
 import { getAllTopics } from "../../services/topicService";
 
-export const TopicSelect = ({ setTopicId }) => {
+export const TopicSelect = ({ setTopicId, topicId }) => {
     const [allTopicsArray, setAllTopicsArray] = useState([]);
 
     useEffect(() => {
@@ -18,11 +18,11 @@ export const TopicSelect = ({ setTopicId }) => {
             <Select.Root
                 onValueChange={handleTopicChange}
                 size="2"
-                defaultValue="0"
+                value={topicId}
             >
                 <Select.Trigger />
                 <Select.Content>
-                    <Select.Item value="0">Choose Topic...</Select.Item>
+                    <Select.Item value={0}>Choose Topic...</Select.Item>
                     {allTopicsArray.map((topicObject) => {
                         return (
                             <Select.Item

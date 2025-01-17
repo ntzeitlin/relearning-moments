@@ -57,27 +57,35 @@ export const DetailedPost = ({ getAndSetAllPosts, currentUser, postId }) => {
     };
 
     return (
-        <Card size="2" m="3">
-            <Heading size="4">{localPostData?.title}</Heading>
-            <Heading size="3">Author: {localPostData.user?.name}</Heading>
-            <Heading size="3" weight="medium">
-                Topic: {localPostData.topic?.name}
-            </Heading>
-            <Heading size="2" weight="medium">
-                Likes:{" "}
-                {localPostData.userLikedPosts?.length
-                    ? localPostData.userLikedPosts?.length
-                    : "0"}
-            </Heading>
-            <Heading size="1">Date: {localPostData.date}</Heading>
-            <Box>{localPostData.body}</Box>
-            <Section mt="-7" mb="-8">
-                {currentUser.id === localPostData.userId ? (
-                    <Button>Edit</Button>
-                ) : (
-                    checkIfLiked()
-                )}
-            </Section>
-        </Card>
+        <Container size="3">
+            <Card size="3" m="3">
+                <Heading size="4">{localPostData?.title}</Heading>
+                <Heading size="3">Author: {localPostData.user?.name}</Heading>
+                <Heading size="3" weight="medium">
+                    Topic: {localPostData.topic?.name}
+                </Heading>
+                <Heading size="2" weight="medium">
+                    Likes:{" "}
+                    {localPostData.userLikedPosts?.length
+                        ? localPostData.userLikedPosts?.length
+                        : "0"}
+                </Heading>
+                <Heading size="1">Date: {localPostData.date}</Heading>
+                <Box>{localPostData.body}</Box>
+                <Section mt="-7" mb="-8">
+                    {currentUser.id === localPostData.userId ? (
+                        <Button
+                            onClick={() => {
+                                navigate(`/post/edit/${postId}`);
+                            }}
+                        >
+                            Edit
+                        </Button>
+                    ) : (
+                        checkIfLiked()
+                    )}
+                </Section>
+            </Card>
+        </Container>
     );
 };

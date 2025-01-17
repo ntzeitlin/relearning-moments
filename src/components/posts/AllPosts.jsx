@@ -1,5 +1,5 @@
 import { Container, Grid } from "@radix-ui/themes";
-import { Post } from "../posts/Post";
+import { Post } from "./Post";
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 

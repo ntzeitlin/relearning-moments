@@ -21,8 +21,8 @@ export const NavBar = () => {
                     Favorite Posts
                 </Link>
             </TabNav.Link>
-            <TabNav.Link asChild active={location.pathname === ""}>
-                <Link href="/">New Posts</Link>
+            <TabNav.Link asChild active={location.pathname === "/post/new"}>
+                <Link to="/post/new">New Posts</Link>
             </TabNav.Link>
             <TabNav.Link asChild active={location.pathname === ""}>
                 <Link href="/">Profile</Link>

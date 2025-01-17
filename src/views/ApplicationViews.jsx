@@ -1,10 +1,11 @@
 import { Outlet, Route, Routes } from "react-router-dom";
-import { AllPosts } from "../components/views/AllPosts";
+import { AllPosts } from "../components/posts/AllPosts";
 import { NavBar } from "../components/Nav/NavBar";
 import { useEffect, useState } from "react";
 import { getAllPosts } from "../services/postService";
 import { FilterBar } from "../components/filter/FilterBar";
 import { Post } from "../components/posts/Post";
+import { ManagePost } from "../components/form/ManagePost";
 
 export const ApplicationViews = () => {
     const [topicId, setTopicId] = useState("");
@@ -64,6 +65,7 @@ export const ApplicationViews = () => {
                             setSearchTerm={setSearchTerm}
                             setTopicId={setTopicId}
                             getAndSetAllPosts={getAndSetAllPosts}
+                            topicId={topicId}
                         />
                         <Outlet />
                     </>
@@ -98,6 +100,7 @@ export const ApplicationViews = () => {
                             />
                         }
                     />
+
                     <Route
                         path="mine"
                         element={
@@ -118,6 +121,22 @@ export const ApplicationViews = () => {
                                 viewName={"view--favorite--"}
                             />
                         }
+                    />
+                    <Route path="edit">
+                        <Route
+                            path=":postId"
+                            element={
+                                <ManagePost
+                                    shouldEdit={true}
+                                    getAndSetAllPosts={getAndSetAllPosts}
+                                />
+                            }
+                        />
+                    </Route>
+
+                    <Route
+                        path="new"
+                        element={<ManagePost shouldEdit={false} />}
                     />
                 </Route>
             </Route>

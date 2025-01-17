@@ -7,6 +7,7 @@ export const TopicSelect = ({ setTopicId, topicId }) => {
 
     useEffect(() => {
         getAllTopics().then((data) => setAllTopicsArray(data));
+        topicId = 0;
     }, []);
 
     const handleTopicChange = (event) => {

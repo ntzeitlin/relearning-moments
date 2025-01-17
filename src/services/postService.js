@@ -39,3 +39,13 @@ export const updatePostById = async (submissionObject, postId) => {
         body: JSON.stringify(submissionObject)
     }).then(data => data.json())
 }
+
+export const submitNewPost = async (submissionObject) => {
+    return await fetch("http://localhost:8088/posts", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(submissionObject)
+    }).then(data => data.json())
+}

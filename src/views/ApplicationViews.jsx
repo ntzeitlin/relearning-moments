@@ -8,7 +8,7 @@ import { Post } from "../components/posts/Post";
 import { ManagePost } from "../components/form/ManagePost";
 
 export const ApplicationViews = () => {
-    const [topicId, setTopicId] = useState("");
+    const [topicId, setTopicId] = useState(0);
     const [searchTerm, setSearchTerm] = useState("");
     const [allPostsArray, setAllPostsArray] = useState([]);
     const [filteredPosts, setFilteredPosts] = useState([]);
@@ -129,6 +129,7 @@ export const ApplicationViews = () => {
                                 <ManagePost
                                     shouldEdit={true}
                                     getAndSetAllPosts={getAndSetAllPosts}
+                                    currentUser={currentUser}
                                 />
                             }
                         />
@@ -136,7 +137,13 @@ export const ApplicationViews = () => {
 
                     <Route
                         path="new"
-                        element={<ManagePost shouldEdit={false} />}
+                        element={
+                            <ManagePost
+                                shouldEdit={false}
+                                currentUser={currentUser}
+                                getAndSetAllPosts={getAndSetAllPosts}
+                            />
+                        }
                     />
                 </Route>
             </Route>

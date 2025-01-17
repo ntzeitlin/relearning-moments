@@ -4,6 +4,7 @@ import { Button, Card, Container, Heading } from "@radix-ui/themes";
 import { Link } from "react-router-dom";
 import {
     deleteLikedPostById,
+    deletePostByPostId,
     getLikedPostByUserIdAndPostId,
 } from "../../services/postService";
 
@@ -12,6 +13,7 @@ export const SummaryPost = ({
     showDislike,
     currentUser,
     getAndSetAllPosts,
+    showDelete,
 }) => {
     const handleUnlike = async () => {
         const likedPostId = await getLikedPostByUserIdAndPostId(
@@ -20,6 +22,11 @@ export const SummaryPost = ({
         );
 
         deleteLikedPostById(likedPostId[0].id);
+        getAndSetAllPosts();
+    };
+
+    const handleDelete = () => {
+        deletePostByPostId(postData.id);
         getAndSetAllPosts();
     };
 
@@ -41,6 +48,15 @@ export const SummaryPost = ({
                 <Container>
                     <Button size="1" mt="2" color="red" onClick={handleUnlike}>
                         <CircleBackslashIcon /> Unlike
+                    </Button>
+                </Container>
+            ) : (
+                ""
+            )}
+            {showDelete ? (
+                <Container mt="3" mb="3">
+                    <Button size="1" color="red" onClick={handleDelete}>
+                        DELETE
                     </Button>
                 </Container>
             ) : (

@@ -30,6 +30,12 @@ export const deleteLikedPostById = async (likedPostId) => {
     })
 }
 
+export const deletePostByPostId = async (postId) => {
+    return await fetch(`http://localhost:8088/posts/${postId}`, {
+        method: "DELETE"
+    })
+}
+
 export const updatePostById = async (submissionObject, postId) => {
     return await fetch(`http://localhost:8088/posts/${postId}`, {
         method: "PUT",

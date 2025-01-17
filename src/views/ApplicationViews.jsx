@@ -108,6 +108,8 @@ export const ApplicationViews = () => {
                                 filteredPosts={filteredPosts}
                                 currentUser={currentUser}
                                 viewName={"view--mine--"}
+                                showDelete={true}
+                                getAndSetAllPosts={getAndSetAllPosts}
                             />
                         }
                     />

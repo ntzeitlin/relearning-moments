@@ -9,6 +9,7 @@ export const AllPosts = ({
     currentUser = {},
     getAndSetAllPosts,
     viewName,
+    showDelete,
 }) => {
     const [postArray, setPostArray] = useState([]);
     const location = useLocation();
@@ -57,6 +58,7 @@ export const AllPosts = ({
                                 location.state?.showfavorites ? true : false
                             }
                             viewName={viewName}
+                            showDelete={showDelete}
                         />
                     );
                 })}

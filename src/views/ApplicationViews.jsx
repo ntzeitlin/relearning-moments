@@ -6,6 +6,7 @@ import { getAllPosts } from "../services/postService";
 import { FilterBar } from "../components/filter/FilterBar";
 import { Post } from "../components/posts/Post";
 import { ManagePost } from "../components/form/ManagePost";
+import { ManageProfile } from "../components/form/ManageProfile";
 
 export const ApplicationViews = () => {
     const [topicId, setTopicId] = useState(0);
@@ -60,7 +61,7 @@ export const ApplicationViews = () => {
                 path="/"
                 element={
                     <>
-                        <NavBar />
+                        <NavBar currentUser={currentUser} />
                         <FilterBar
                             setSearchTerm={setSearchTerm}
                             setTopicId={setTopicId}
@@ -80,6 +81,22 @@ export const ApplicationViews = () => {
                         />
                     }
                 />
+                <Route path="profile">
+                    <Route
+                        path=":userId"
+                        element={<ManageProfile currentUser={currentUser} />}
+                    >
+                        <Route
+                            path="edit"
+                            element={
+                                <ManageProfile
+                                    currentUser={currentUser}
+                                    shouldEdit={true}
+                                />
+                            }
+                        />
+                    </Route>
+                </Route>
                 <Route path="post">
                     <Route
                         index

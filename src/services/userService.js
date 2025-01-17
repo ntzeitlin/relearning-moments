@@ -15,7 +15,18 @@ export const createUser = (user) => {
 }
 
 export const getUserById = async (userId) => {
-  const response = await fetch(`http://localhost:8088/users/${userId}`)
+  const response = await fetch(`http://localhost:8088/users/${userId}?_embed=posts`)
   const data = await response.json()
   return data
+}
+
+export const updateUserById = async (userObject, userId) => {
+  return await fetch(`http://localhost:8088/users/${userId}`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(userObject)
+  })
+
 }

@@ -9,7 +9,7 @@ import {
     Section,
 } from "@radix-ui/themes";
 import { getPostById, handleLike } from "../../services/postService";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 export const DetailedPost = ({ getAndSetAllPosts, currentUser, postId }) => {
@@ -60,7 +60,12 @@ export const DetailedPost = ({ getAndSetAllPosts, currentUser, postId }) => {
         <Container size="3">
             <Card size="3" m="3">
                 <Heading size="4">{localPostData?.title}</Heading>
-                <Heading size="3">Author: {localPostData.user?.name}</Heading>
+                <Heading size="3">
+                    Author:{" "}
+                    <Link to={`/profile/${localPostData.userId}`}>
+                        {localPostData.user?.name}
+                    </Link>
+                </Heading>
                 <Heading size="3" weight="medium">
                     Topic: {localPostData.topic?.name}
                 </Heading>

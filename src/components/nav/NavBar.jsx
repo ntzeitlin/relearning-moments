@@ -1,6 +1,6 @@
 import { TabNav } from "@radix-ui/themes";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-export const NavBar = () => {
+export const NavBar = ({ currentUser }) => {
     const location = useLocation();
     const navigate = useNavigate();
     return (
@@ -24,8 +24,8 @@ export const NavBar = () => {
             <TabNav.Link asChild active={location.pathname === "/post/new"}>
                 <Link to="/post/new">New Posts</Link>
             </TabNav.Link>
-            <TabNav.Link asChild active={location.pathname === ""}>
-                <Link href="/">Profile</Link>
+            <TabNav.Link asChild active={location.pathname === "/profile"}>
+                <Link to={`/profile/${currentUser.id}`}>Profile</Link>
             </TabNav.Link>
             <TabNav.Link asChild active={location.pathname === ""}>
                 {localStorage.getItem("learning_user") ? (

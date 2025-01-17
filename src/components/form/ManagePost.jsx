@@ -68,11 +68,19 @@ export const ManagePost = ({ shouldEdit, getAndSetAllPosts, currentUser }) => {
             topicId: localTopicId,
         };
 
-        submitNewPost(submissionObject);
-        getAndSetAllPosts();
-        navigate("/post/mine", {
-            state: { showmyposts: true },
-        });
+        if (
+            localManagePostData.title &&
+            localManagePostData.body &&
+            localTopicId
+        ) {
+            submitNewPost(submissionObject);
+            getAndSetAllPosts();
+            navigate("/post/mine", {
+                state: { showmyposts: true },
+            });
+        } else {
+            window.alert("Please fill out all");
+        }
     };
 
     return (

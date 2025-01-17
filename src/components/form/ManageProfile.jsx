@@ -33,7 +33,7 @@ export const ManageProfile = ({ currentUser, shouldEdit }) => {
 
     return !location.state?.shouldEdit ? (
         <Container size="3">
-            <Card size="3">
+            <Card size="3" m="5">
                 <Heading size="4">
                     User Name: {userData.name || userData.fullName}
                 </Heading>

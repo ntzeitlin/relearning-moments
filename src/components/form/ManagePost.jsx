@@ -85,7 +85,7 @@ export const ManagePost = ({ shouldEdit, getAndSetAllPosts, currentUser }) => {
 
     return (
         <Container size="3">
-            <Card size="3" m="3">
+            <Card size="3" m="5">
                 <Heading size="4" m="1">
                     Title:
                     <TextField.Root

@@ -62,12 +62,12 @@ export const ApplicationViews = () => {
                 element={
                     <>
                         <NavBar currentUser={currentUser} />
-                        <FilterBar
+                        {/* <FilterBar
                             setSearchTerm={setSearchTerm}
                             setTopicId={setTopicId}
                             getAndSetAllPosts={getAndSetAllPosts}
                             topicId={topicId}
-                        />
+                        /> */}
                         <Outlet />
                     </>
                 }
@@ -78,6 +78,10 @@ export const ApplicationViews = () => {
                         <AllPosts
                             filteredPosts={filteredPosts}
                             viewName={"view--index--"}
+                            setSearchTerm={setSearchTerm}
+                            setTopicId={setTopicId}
+                            getAndSetAllPosts={getAndSetAllPosts}
+                            topicId={topicId}
                         />
                     }
                 />
@@ -104,6 +108,10 @@ export const ApplicationViews = () => {
                             <AllPosts
                                 filteredPosts={filteredPosts}
                                 viewName={"view--post--"}
+                                setSearchTerm={setSearchTerm}
+                                setTopicId={setTopicId}
+                                getAndSetAllPosts={getAndSetAllPosts}
+                                topicId={topicId}
                             />
                         }
                     />
@@ -127,6 +135,9 @@ export const ApplicationViews = () => {
                                 viewName={"view--mine--"}
                                 showDelete={true}
                                 getAndSetAllPosts={getAndSetAllPosts}
+                                setSearchTerm={setSearchTerm}
+                                setTopicId={setTopicId}
+                                topicId={topicId}
                             />
                         }
                     />
@@ -138,6 +149,9 @@ export const ApplicationViews = () => {
                                 currentUser={currentUser}
                                 getAndSetAllPosts={getAndSetAllPosts}
                                 viewName={"view--favorite--"}
+                                setSearchTerm={setSearchTerm}
+                                setTopicId={setTopicId}
+                                topicId={topicId}
                             />
                         }
                     />

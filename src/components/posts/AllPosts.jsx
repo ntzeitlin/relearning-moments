@@ -2,6 +2,7 @@ import { Container, Grid } from "@radix-ui/themes";
 import { Post } from "./Post";
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
+import { FilterBar } from "../filter/FilterBar";
 
 // eslint-disable-next-line react/prop-types
 export const AllPosts = ({
@@ -10,6 +11,9 @@ export const AllPosts = ({
     getAndSetAllPosts,
     viewName,
     showDelete,
+    setSearchTerm,
+    setTopicId,
+    topicId,
 }) => {
     const [postArray, setPostArray] = useState([]);
     const location = useLocation();
@@ -45,6 +49,12 @@ export const AllPosts = ({
 
     return (
         <Container size="4">
+            <FilterBar
+                setSearchTerm={setSearchTerm}
+                setTopicId={setTopicId}
+                getAndSetAllPosts={getAndSetAllPosts}
+                topicId={topicId}
+            />
             <Grid columns="3">
                 {postArray?.map((postObject) => {
                     return (

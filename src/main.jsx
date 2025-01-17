@@ -13,9 +13,9 @@ const container = document.getElementById("root");
 const root = ReactDOM.createRoot(container);
 root.render(
     <BrowserRouter>
-        <Theme accentColor="yellow" grayColor="olive" appearance="dark">
-            <App />
-            {/* <ThemePanel /> */}
-        </Theme>
+        {/* <Theme accentColor="yellow" grayColor="olive" appearance="dark"> */}
+        <App />
+        {/* <ThemePanel /> */}
+        {/* </Theme> */}
     </BrowserRouter>
 );

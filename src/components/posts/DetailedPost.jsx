@@ -57,7 +57,7 @@ export const DetailedPost = ({ getAndSetAllPosts, currentUser, postId }) => {
     };
 
     return (
-        <Container size="3">
+        <Container size="3" mt="5">
             <Card size="3" m="3">
                 <Heading size="4">{localPostData?.title}</Heading>
                 <Heading size="3">

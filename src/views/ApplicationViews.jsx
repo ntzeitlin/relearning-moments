@@ -8,7 +8,7 @@ import { Post } from "../components/posts/Post";
 import { ManagePost } from "../components/form/ManagePost";
 import { ManageProfile } from "../components/form/ManageProfile";
 
-export const ApplicationViews = () => {
+export const ApplicationViews = ({ setDisplayMode }) => {
     const [topicId, setTopicId] = useState(0);
     const [searchTerm, setSearchTerm] = useState("");
     const [allPostsArray, setAllPostsArray] = useState([]);
@@ -61,7 +61,10 @@ export const ApplicationViews = () => {
                 path="/"
                 element={
                     <>
-                        <NavBar currentUser={currentUser} />
+                        <NavBar
+                            currentUser={currentUser}
+                            setDisplayMode={setDisplayMode}
+                        />
                         {/* <FilterBar
                             setSearchTerm={setSearchTerm}
                             setTopicId={setTopicId}

@@ -3,10 +3,10 @@ import { AllPosts } from "../components/posts/AllPosts";
 import { NavBar } from "../components/Nav/NavBar";
 import { useEffect, useState } from "react";
 import { getAllPosts } from "../services/postService";
-import { FilterBar } from "../components/filter/FilterBar";
 import { Post } from "../components/posts/Post";
 import { ManagePost } from "../components/form/ManagePost";
 import { ManageProfile } from "../components/form/ManageProfile";
+import { Footer } from "../components/nav/Footer";
 
 export const ApplicationViews = ({ setDisplayMode }) => {
     const [topicId, setTopicId] = useState(0);
@@ -65,12 +65,6 @@ export const ApplicationViews = ({ setDisplayMode }) => {
                             currentUser={currentUser}
                             setDisplayMode={setDisplayMode}
                         />
-                        {/* <FilterBar
-                            setSearchTerm={setSearchTerm}
-                            setTopicId={setTopicId}
-                            getAndSetAllPosts={getAndSetAllPosts}
-                            topicId={topicId}
-                        /> */}
                         <Outlet />
                     </>
                 }
